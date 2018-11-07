@@ -1,5 +1,5 @@
-export default ({markup, css}) => {
-    return `<!doctype html>
+export default ()=>{
+  return `<!doctype html>
       <html lang="en">
         <head>
           <meta charset="utf-8">
@@ -13,8 +13,9 @@ export default ({markup, css}) => {
           </style>
         </head>
         <body style="margin:0">
-          <div id="root">${markup}</div>
-          <style id="jss-server-side">${css}</style>
+          <div>dfdfdfdfdfdfdfd</div>
+          <div id="root">sdsdsds</div>
+          <style id="jss-server-side"></style>
           <script type="text/javascript" src="/dist/bundle.js"></script>
         </body>
       </html>`

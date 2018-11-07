@@ -1,37 +1,38 @@
-import React from 'react'
-import MainRouter from './MainRouter'
-import {BrowserRouter} from 'react-router-dom'
-import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
-import {indigo, pink} from 'material-ui/colors'
-import { hot } from 'react-hot-loader'
+import React, {Component, Fragment} from 'react'
+import Header from './src/components/Header'
+import axios from 'axios'
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-    light: '#757de8',
-    main: '#3f51b5',
-    dark: '#002984',
-    contrastText: '#fff',
-  },
-  secondary: {
-    light: '#ff79b0',
-    main: '#ff4081',
-    dark: '#c60055',
-    contrastText: '#000',
-  },
-    openTitle: indigo['400'],
-    protectedTitle: pink['400'],
-    type: 'light'
-  }
-})
+class App extends Component{
 
-const App = () => (
-  <BrowserRouter>
-    <MuiThemeProvider theme={theme}>
-      <MainRouter/>
-    </MuiThemeProvider>
-  </BrowserRouter>
-)
+   constructor(){
+      super();
+      this.state = {
+         loaded : null
+      }
+   }
 
-export default hot(module)(App)
+   componentDidMount(){
+     axios.get('https://jsonplaceholder.typicode.com/comments')
+          .then((response)=>{
+              this.setState({
+                 loaded : response
+              })
+          })
+   }
+
+   render(){
+      console.log(this.state);
+      return(
+
+        <Fragment>
+         <Header/>
+           {this.state.loaded
+            ? <div>Data</div>
+            : <div>Loading</div>
+            }
+        </Fragment>
+      )
+   }
+}
+
+export default App;
