@@ -7,6 +7,7 @@ const config = {
     mode: "development",
     devtool: 'eval-source-map',
     entry: [
+        'babel-polyfill',
         'react-hot-loader/patch',
         'webpack-hot-middleware/client?reload=true',
         path.join(CURRENT_WORKING_DIR, 'client/main.js')
@@ -24,7 +25,7 @@ const config = {
                 use: [
                     'babel-loader'
                 ]
-            },
+             },
             {
                 test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
                 use: 'file-loader'

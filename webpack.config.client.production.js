@@ -5,6 +5,7 @@ const CURRENT_WORKING_DIR = process.cwd()
 const config = {
     mode: "production",
     entry: [
+        'babel-polyfill',
         path.join(CURRENT_WORKING_DIR, 'client/main.js')
     ],
     output: {

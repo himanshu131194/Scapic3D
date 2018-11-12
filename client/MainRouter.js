@@ -1,6 +1,9 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {Route, Switch} from 'react-router-dom'
-import
+import Header from './src/components/Header'
+import Login from './src/components/Login'
+import Signup from './src/components/Signup'
+import Home from './src/components/Home'
 
 class MainRouter extends Component{
   componentDidMount(){
@@ -8,13 +11,13 @@ class MainRouter extends Component{
   }
   render(){
      return(
-        <div>
+        <Fragment>
+          <Header/>
           <Switch>
-             <Route path="/" component={}/>
-             <Route path="/login" component={}/>
-             <Route path="/signup" component={}/>
+             <Route exact path="/login" component={Login}/>
+             <Route path="/signup" component={Signup}/>
           </Switch>
-        </div>
+        </Fragment>
      )
   }
 }

@@ -1,6 +1,9 @@
 import React, {Component, Fragment} from 'react'
+import MainRouter from './MainRouter'
+import {BrowserRouter} from 'react-router-dom'
 import Header from './src/components/Header'
 import axios from 'axios'
+
 
 class App extends Component{
 
@@ -12,24 +15,15 @@ class App extends Component{
    }
 
    componentDidMount(){
-     axios.get('https://jsonplaceholder.typicode.com/comments')
-          .then((response)=>{
-              this.setState({
-                 loaded : response
-              })
-          })
+
    }
 
    render(){
-      console.log(this.state);
       return(
-
         <Fragment>
-         <Header/>
-           {this.state.loaded
-            ? <div>Data</div>
-            : <div>Loading</div>
-            }
+         <BrowserRouter>
+           <MainRouter/>
+         </BrowserRouter>
         </Fragment>
       )
    }

@@ -2,4 +2,15 @@ import React from 'react'
 import { hydrate } from 'react-dom'
 import App from './App'
 
-hydrate(<App/>, document.getElementById('root'))
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import reducers from './src/reducers';
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+
+hydrate(
+ <Provider store={createStoreWithMiddleware(reducers)}>
+  <App/>
+ </Provider>
+  , document.getElementById('root'))

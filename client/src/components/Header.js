@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link, withRouter} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -6,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
+
+import {connect} from 'react-redux'
+import * as actions  from '../actions'
 
 const styles = theme => ({
     buttonLeftSpace: {
@@ -19,6 +23,7 @@ const styles = theme => ({
 
 class Header extends Component{
       render(){
+          console.log(this.props);
           const {classes} = this.props
           return(
             <header>
@@ -31,8 +36,12 @@ class Header extends Component{
                       </Typography>
                    </Grid>
                    <Grid item xs={6} className={classes.textRight}>
-                      <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>login</Button>
-                      <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>sign up</Button>
+                       <Link to="/login">
+                        <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>login</Button>
+                       </Link>
+                       <Link to="/signup">
+                        <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>sign up</Button>
+                       </Link>
                    </Grid>
                  </Grid>
                 </Toolbar>
@@ -46,4 +55,11 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Header);
+function mapStatetoProps(state){
+   return {
+      errorMessage: state.auth.errorMessage
+   }
+}
+
+//export default withStyles(styles)(Header);
+export default connect(mapStatetoProps, actions)(withStyles(styles)(Header));
