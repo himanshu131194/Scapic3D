@@ -6,13 +6,15 @@ export const signup = ({email, password}, callback)=>{
     return async (dispatch)=>{
        try{
          const request = await axios.post('http://localhost:3000/api/signin', {
-                   email: email,
-                   password: password
+               email: email,
+               password: password
          });
+         console.log(request.data.data);
          dispatch({
              type: AUTH_USERS,
-             payload: request.data.token
+             payload: request.data.data
          })
+         callback();
        }catch(error){
         console.log(error);
          dispatch({

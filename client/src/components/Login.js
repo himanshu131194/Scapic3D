@@ -58,6 +58,7 @@ class Login extends Component{
            const {password} = this.state;
            this.props.signup({email, password}, ()=>{
               console.log("redirect");
+              console.log(this.props);
            });
       }
       render(){
@@ -100,10 +101,8 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-function mapStatetoProps(state){
-   return {
-      errorMessage: state.auth.errorMessage
-   }
+function mapStatetoProps({auth}){
+   return {auth};
 }
 
 export default connect(mapStatetoProps, actions)(withStyles(styles)(Login));

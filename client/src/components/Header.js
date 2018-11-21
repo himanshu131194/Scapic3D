@@ -8,8 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
 
-import {connect} from 'react-redux'
-import * as actions  from '../actions'
+import * as auth from '../auth/auth';
 
 const styles = theme => ({
     buttonLeftSpace: {
@@ -22,8 +21,10 @@ const styles = theme => ({
 });
 
 class Header extends Component{
+      componentDidMount(){
+            console.log(auth.isAuthenticated());
+      }
       render(){
-          console.log(this.props);
           const {classes} = this.props
           return(
             <header>
@@ -37,10 +38,10 @@ class Header extends Component{
                    </Grid>
                    <Grid item xs={6} className={classes.textRight}>
                        <Link to="/login">
-                        <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>login</Button>
+                         <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>login</Button>
                        </Link>
                        <Link to="/signup">
-                        <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>sign up</Button>
+                         <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>sign up</Button>
                        </Link>
                    </Grid>
                  </Grid>
@@ -51,15 +52,5 @@ class Header extends Component{
       }
 }
 
-Header.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-function mapStatetoProps(state){
-   return {
-      errorMessage: state.auth.errorMessage
-   }
-}
-
 //export default withStyles(styles)(Header);
-export default connect(mapStatetoProps, actions)(withStyles(styles)(Header));
+export default withStyles(styles)(Header);
