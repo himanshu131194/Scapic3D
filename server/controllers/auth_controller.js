@@ -18,7 +18,10 @@ const signin = async (req, res)=>{
         });
         res.status(200).json({
             data: {
-               token, auth: true
+               token,
+               user,
+               iat: Date.now(),
+               auth: true
             }
         })
       }catch(error){

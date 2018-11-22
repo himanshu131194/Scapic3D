@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import {connect} from 'react-redux'
 import * as actions  from '../actions'
+import * as auth from '../auth/auth';
 
 const styles = theme => ({
     card:{
@@ -56,9 +57,11 @@ class Login extends Component{
       loginUser = (e)=>{
            const {email}= this.state;
            const {password} = this.state;
-           this.props.signup({email, password}, ()=>{
-              console.log("redirect");
-              console.log(this.props);
+           this.props.signin({email, password}, ()=>{
+              let authLoginCheck = this.props.auth.authenticated;
+              if(authLoginCheck.auth){
+                 auth.setLogin(authLoginCheck);
+              }
            });
       }
       render(){

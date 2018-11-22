@@ -2,7 +2,7 @@ import {AUTH_USERS, AUTH_ERROR} from './types'
 import axios from 'axios'
 
 
-export const signup = ({email, password}, callback)=>{
+export const signin = ({email, password}, callback)=>{
     return async (dispatch)=>{
        try{
          const request = await axios.post('http://localhost:3000/api/signin', {
@@ -23,6 +23,10 @@ export const signup = ({email, password}, callback)=>{
          })
        }
     }
+}
+
+export const signup = ({email, password}, callback)=>{
+
 }
 // export function authUsers(){
 //    const url = `https://jsonplaceholder.typicode.com/comments`;

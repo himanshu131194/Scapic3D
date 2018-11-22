@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 
 import * as auth from '../auth/auth';
 
@@ -24,8 +25,33 @@ class Header extends Component{
       componentDidMount(){
             console.log(auth.isAuthenticated());
       }
+      withLogin(){
+           const {classes} = this.props;
+           return(
+             <Grid item xs={6} className={classes.textRight}>
+               <Link to="/signup">
+                <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>Hi, Himanshu</Button>
+               </Link>
+             </Grid>
+           )
+      }
+      withoutLogin(){
+         const {classes} = this.props;
+         return(
+           <Grid item xs={6} className={classes.textRight}>
+             <Link to="/login">
+               <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>login</Button>
+              </Link>
+              <Link to="/signup">
+               <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>sign up</Button>
+              </Link>
+           </Grid>
+         )
+      }
       render(){
-          const {classes} = this.props
+          const {classes} = this.props;
+          let privateElements = this.props.auth.authenticated.auth;
+          console.log(this.props);
           return(
             <header>
               <AppBar>
@@ -36,14 +62,7 @@ class Header extends Component{
                          Resume Builder
                       </Typography>
                    </Grid>
-                   <Grid item xs={6} className={classes.textRight}>
-                       <Link to="/login">
-                         <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>login</Button>
-                       </Link>
-                       <Link to="/signup">
-                         <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>sign up</Button>
-                       </Link>
-                   </Grid>
+                   {privateElements? this.withLogin(): this.withoutLogin()}
                  </Grid>
                 </Toolbar>
               </AppBar>
@@ -52,5 +71,8 @@ class Header extends Component{
       }
 }
 
+function mapStatetoProps({auth}){
+   return {auth};
+}
+export default connect(mapStatetoProps)(withStyles(styles)(Header));
 //export default withStyles(styles)(Header);
-export default withStyles(styles)(Header);

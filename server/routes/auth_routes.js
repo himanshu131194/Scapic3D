@@ -4,8 +4,5 @@ const router = express.Router();
 
 router.route('/signin')
       .post(authController.signin)
-
-
-
-
+      
 export default router;
