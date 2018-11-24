@@ -26,7 +26,17 @@ export const signin = ({email, password}, callback)=>{
 }
 
 export const signup = ({email, password}, callback)=>{
+    return async (dispatch)=>{
+        try{
+          const request = await axios.post('http://localhost:3000/api/users', {
+                email: email,
+                password: password
+          });
+          console.log(request);
+        }catch(error) {
 
+        }
+    }
 }
 // export function authUsers(){
 //    const url = `https://jsonplaceholder.typicode.com/comments`;

@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 0
       },
+      verified: {
+         type: Boolean,
+         default: config.VERIFY.DEFAULT
+      },
       updated: Date,
       created:{
          type: Date,

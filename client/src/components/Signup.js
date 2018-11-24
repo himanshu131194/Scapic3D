@@ -9,6 +9,10 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
 
+import {connect} from 'react-redux'
+import * as actions  from '../actions'
+import * as auth from '../auth/auth';
+
 const styles = theme => ({
     card:{
        maxWidth: 450,
@@ -26,6 +30,22 @@ const styles = theme => ({
 });
 
 class Signup extends Component{
+      constructor(){
+         super();
+         this.state = {
+            email : '',
+            password: '',
+            confirmPassword: ''
+         }
+      }
+      signupUser = ()=>{
+        const {email}= this.state;
+        const {password} = this.state;
+        const {confirmPassword} = this.state;
+        this.props.signup({email, password}, ()=>{
+            console.log("redirect");
+        })
+      }
       render(){
           const {classes} = this.props
           return(
@@ -35,12 +55,12 @@ class Signup extends Component{
                     <Typography type="headline" component="h2" className={classes.title}>
                        Sign Up
                     </Typography>
-                    <TextField id="email" type="email" label="Email" className={classes.textField}  margin="normal"/><br/>
-                    <TextField id="password" type="password" label="Password" className={classes.textField} margin="normal"/>
-                    <TextField id="password" type="password" label="Confirm Password" className={classes.textField} margin="normal"/>
+                    <TextField id="email" type="email" label="Email" className={classes.textField}  onChange={(e)=>this.setState({email: e.target.value})} margin="normal"/><br/>
+                    <TextField id="password" type="password" label="Password" className={classes.textField} onChange={(e)=>this.setState({password: e.target.value})} margin="normal"/>
+                    <TextField id="password" type="password" label="Confirm Password" className={classes.textField} onChange={(e)=>this.setState({confirmPassword: e.target.value})} margin="normal"/>
                   </CardContent>
                   <CardActions>
-                     <Button color="primary" variant="contained" className={classes.submit}>Submit</Button>
+                     <Button color="primary" variant="contained" onClick={this.signupUser} className={classes.submit}>Submit</Button>
                   </CardActions>
                 </Card>
              </Fragment>
@@ -52,4 +72,9 @@ Signup.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Signup);
+function mapStatetoProps({auth}){
+   return {auth};
+}
+
+//export default withStyles(styles)(Signup);
+export default connect(mapStatetoProps, actions)(withStyles(styles)(Signup));

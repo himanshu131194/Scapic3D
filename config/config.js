@@ -7,6 +7,13 @@ const config = {
        DEFAULT: 0,
        GOOGLE: 1,
        FACEBOOK: 2
+  },
+  VERIFY: {
+      DEFAULT: false,
+      VERIFIED: true
+  },
+  EMAIL: {
+     OWNER : "sunnysavita18@gmail.com"
   }
 }
 
