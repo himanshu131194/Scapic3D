@@ -1,4 +1,4 @@
-import {AUTH_USERS, AUTH_ERROR} from './types'
+import {AUTH_USERS, AUTH_ERROR, CREATE_USERS} from './types'
 import axios from 'axios'
 
 
@@ -32,10 +32,33 @@ export const signup = ({email, password}, callback)=>{
                 email: email,
                 password: password
           });
+          dispatch({
+              type: CREATE_USERS,
+              payload: request.data.data
+          })
+          callback();
           console.log(request);
         }catch(error) {
 
         }
+    }
+}
+
+export const verifyOTP = (email, otp, callback)=>{
+    return async (dispatch)=>{
+       try {
+         const request = await axios.post('http://localhost:3000/api/verify-otp', {email, otp});
+         dispatch({
+             type: AUTH_USERS,
+             payload: request.data.data
+         })
+         callback();
+       }catch(error) {
+         dispatch({
+             type: AUTH_ERROR,
+             payload: error
+         })
+       }
     }
 }
 // export function authUsers(){

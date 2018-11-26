@@ -25,6 +25,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 0
       },
+      authId: String,
       verified: {
          type: Boolean,
          default: config.VERIFY.DEFAULT

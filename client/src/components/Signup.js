@@ -44,6 +44,7 @@ class Signup extends Component{
         const {confirmPassword} = this.state;
         this.props.signup({email, password}, ()=>{
             console.log("redirect");
+            this.props.history.push('/verify');
         })
       }
       render(){

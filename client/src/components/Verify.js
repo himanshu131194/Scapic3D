@@ -9,6 +9,10 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
 
+import {connect} from 'react-redux'
+import * as actions  from '../actions'
+import * as auth from '../auth/auth';
+
 const styles = theme => ({
     card:{
        maxWidth: 450,
@@ -25,7 +29,19 @@ const styles = theme => ({
     }
 });
 
-class Signup extends Component{
+class Verify extends Component{
+      constructor(){
+         super();
+         this.state = {otp_entered : ''}
+      }
+      verifyAccount = ()=>{
+          this.props.verifyOTP(this.props.auth.accountdata, this.state.otp_entered, ()=>{
+            let authLoginCheck = this.props.auth.authenticated;
+            if(authLoginCheck.auth){
+               auth.setLogin(authLoginCheck);
+            }
+          })
+      }
       render(){
           const {classes} = this.props
           return(
@@ -35,10 +51,10 @@ class Signup extends Component{
                     <Typography type="headline" component="h2" className={classes.title}>
                        Verify email
                     </Typography>
-                    <TextField id="otp_text" type="text" label="OTP" className={classes.textField}  margin="normal"/><br/>
+                    <TextField id="otp_text" type="text" label="OTP" className={classes.textField} onChange={(e)=>this.setState({otp_entered: e.target.value})} margin="normal"/><br/>
                   </CardContent>
                   <CardActions>
-                     <Button color="primary" variant="contained" className={classes.submit}>verify</Button>
+                     <Button color="primary" variant="contained" onClick={this.verifyAccount} className={classes.submit}>verify</Button>
                   </CardActions>
                 </Card>
              </Fragment>
@@ -46,8 +62,12 @@ class Signup extends Component{
       }
 }
 
-Signup.propTypes = {
+Verify.propTypes = {
   classes: PropTypes.object.isRequired
 }
+function mapStatetoProps({auth}){
+   return {auth};
+}
 
-export default withStyles(styles)(Signup);
+//export default withStyles(styles)(Signup);
+export default connect(mapStatetoProps, actions)(withStyles(styles)(Verify));
