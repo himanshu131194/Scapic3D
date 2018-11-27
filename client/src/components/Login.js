@@ -61,6 +61,7 @@ class Login extends Component{
               let authLoginCheck = this.props.auth.authenticated;
               if(authLoginCheck.auth){
                  auth.setLogin(authLoginCheck);
+                 this.props.history.push('/home');
               }
            });
       }

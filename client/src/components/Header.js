@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
 
 import * as auth from '../auth/auth';
+import * as actions  from '../actions'
 
 const styles = theme => ({
     buttonLeftSpace: {
@@ -23,7 +24,13 @@ const styles = theme => ({
 
 class Header extends Component{
       componentDidMount(){
-            console.log(auth.isAuthenticated());
+      }
+      logoutUser = ()=>{
+          auth.unsetLogin(()=>{
+            console.log("sddsdsds");
+            console.log(this.props);
+             this.props.logoutUser();
+          });
       }
       withLogin(){
            const {classes} = this.props;
@@ -31,6 +38,9 @@ class Header extends Component{
              <Grid item xs={6} className={classes.textRight}>
                <Link to="/signup">
                 <Button color="primary" variant="contained" className={classes.buttonLeftSpace}>Hi, Himanshu</Button>
+               </Link>
+               <Link to="/login">
+                <Button color="primary" variant="contained" onClick={this.logoutUser} className={classes.buttonLeftSpace}>logout</Button>
                </Link>
              </Grid>
            )
@@ -50,6 +60,7 @@ class Header extends Component{
       }
       render(){
           const {classes} = this.props;
+          console.log(this.props);
           let privateElements = this.props.auth.authenticated.auth;
           console.log(this.props);
           return(
@@ -74,5 +85,5 @@ class Header extends Component{
 function mapStatetoProps({auth}){
    return {auth};
 }
-export default connect(mapStatetoProps)(withStyles(styles)(Header));
+export default connect(mapStatetoProps, actions)(withStyles(styles)(Header));
 //export default withStyles(styles)(Header);

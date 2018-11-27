@@ -1,4 +1,4 @@
-import {AUTH_USERS, AUTH_ERROR, CREATE_USERS} from './types'
+import {AUTH_USERS, AUTH_ERROR, CREATE_USERS, LOGOUT_USERS} from './types'
 import axios from 'axios'
 
 
@@ -9,14 +9,12 @@ export const signin = ({email, password}, callback)=>{
                email: email,
                password: password
          });
-         console.log(request.data.data);
          dispatch({
              type: AUTH_USERS,
              payload: request.data.data
          })
          callback();
        }catch(error){
-        console.log(error);
          dispatch({
              type: AUTH_ERROR,
              payload: error
@@ -53,7 +51,7 @@ export const verifyOTP = (email, otp, callback)=>{
              payload: request.data.data
          })
          callback();
-       }catch(error) {
+       }catch(error){
          dispatch({
              type: AUTH_ERROR,
              payload: error
@@ -61,6 +59,18 @@ export const verifyOTP = (email, otp, callback)=>{
        }
     }
 }
+
+export const logoutUser = (callback)=>{
+   return async (dispatch)=>{
+       dispatch({
+         type: LOGOUT_USERS,
+         payload: false
+       });
+       callback();
+   }
+}
+
+
 // export function authUsers(){
 //    const url = `https://jsonplaceholder.typicode.com/comments`;
 //    const response = axios.get(url);
