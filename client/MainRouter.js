@@ -15,6 +15,7 @@ class MainRouter extends Component{
         <Fragment>
           <Header/>
           <Switch>
+             <Route exact path="/" component={Home}/>
              <Route exact path="/login" component={Login}/>
              <Route path="/signup" component={Signup}/>
              <Route path="/verify" component={Verify}/>

@@ -49,6 +49,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 //
 // // mount routes
+import passport_services from './services/passport';
+
 app.use('/api', userRoutes);
 app.use('/api', authRoutes);
 app.use('/api', resumeRoutes);

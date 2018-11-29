@@ -38,6 +38,11 @@ class Signup extends Component{
             confirmPassword: ''
          }
       }
+      componentDidMount(){
+        if(this.props.auth.authenticated.auth){
+           this.props.history.push('/home');
+        }
+      }
       signupUser = ()=>{
         const {email}= this.state;
         const {password} = this.state;

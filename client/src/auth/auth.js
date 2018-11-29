@@ -9,8 +9,9 @@ const setLogin = ({token})=>{
       }
 }
 
-const unsetLogin = ()=>{
+const unsetLogin = (callback)=>{
     localStorage.removeItem("login_token");
+    callback();
 }
 
 export {

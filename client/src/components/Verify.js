@@ -34,6 +34,11 @@ class Verify extends Component{
          super();
          this.state = {otp_entered : ''}
       }
+      componentDidMount(){
+        if(this.props.auth.authenticated.auth){
+           this.props.history.push('/home');
+        }
+      }
       verifyAccount = ()=>{
           this.props.verifyOTP(this.props.auth.accountdata, this.state.otp_entered, ()=>{
             let authLoginCheck = this.props.auth.authenticated;

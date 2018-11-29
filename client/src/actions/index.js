@@ -60,13 +60,12 @@ export const verifyOTP = (email, otp, callback)=>{
     }
 }
 
-export const logoutUser = (callback)=>{
-   return async (dispatch)=>{
+export const logoutUser = ()=>{
+   return (dispatch)=>{
        dispatch({
          type: LOGOUT_USERS,
          payload: false
        });
-       callback();
    }
 }
 
