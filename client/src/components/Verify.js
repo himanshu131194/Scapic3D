@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types'
+import Header from './Header';
 import { withStyles } from '@material-ui/core/styles';
 
 import {connect} from 'react-redux'
@@ -52,6 +53,7 @@ class Verify extends Component{
           const {classes} = this.props
           return(
              <Fragment>
+                <Header/>
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography type="headline" component="h2" className={classes.title}>

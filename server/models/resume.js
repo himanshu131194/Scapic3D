@@ -80,10 +80,12 @@ const Resume = new mongoose.Schema({
         }
       ],
       references:[
-         name: String,
-         company: String,
-         email: String,
-         designation: String
+        {
+          name: String,
+          company: String,
+          email: String,
+          designation: String
+        }
       ],
       additional_information:{
          type String

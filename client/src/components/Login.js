@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Header from './Header';
 import Icon from 'material-ui/Icon'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
@@ -74,6 +75,7 @@ class Login extends Component{
           const {classes} = this.props;
           return(
              <Fragment>
+                 <Header/>
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography type="headline" component="h2" className={classes.title}>

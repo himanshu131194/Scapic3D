@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Header from './Header';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
 
@@ -55,6 +56,7 @@ class Signup extends Component{
           const {classes} = this.props
           return(
              <Fragment>
+                <Header/>
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography type="headline" component="h2" className={classes.title}>

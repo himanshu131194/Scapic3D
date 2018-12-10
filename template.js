@@ -14,8 +14,7 @@ export default ()=>{
           </style>
         </head>
         <body style="margin:0">
-          <div>dfdfdfdfdfdfdfd</div>
-          <div id="root">sdsdsds</div>
+          <div id="root"></div>
           <style id="jss-server-side"></style>
           <script type="text/javascript" src="/dist/bundle.js"></script>
           <script>

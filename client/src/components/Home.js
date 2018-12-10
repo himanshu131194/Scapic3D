@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Header from './Header';
 import * as auth from '../auth/auth';
 
 
@@ -40,9 +41,14 @@ class Home extends Component{
            this.props.history.push('/login');
         }
       }
+      buildResumeClick= ()=>{
+        this.props.history.push('/create-resume');
+      }
       render(){
           const {classes} = this.props;
           return(
+            <Fragment>
+             <Header/>
              <div className={classes.landingPage}>
                 <img className={classes.coverImage} src="http://portobsb.adminbsb-themes.com/assets/images/main_bg.jpg"/>
                 <div className={classes.homeActions}>
@@ -57,11 +63,12 @@ class Home extends Component{
                       </Typography>
                     </div>
                     <div>
-                      <Button color="primary" variant="contained" className={classes.buildResumeButton} onClick={this.facebookLogin}>Build Resume</Button>
+                      <Button color="primary" variant="contained" className={classes.buildResumeButton} onClick={this.buildResumeClick}>Build Resume</Button>
                       <Button color="primary" variant="contained" className={classes.facebooklogin} onClick={this.facebookLogin}>Edit and Download Sample Template</Button>
                     </div>
                 </div>
              </div>
+           </Fragment>
           )
       }
 }
