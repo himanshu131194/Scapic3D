@@ -25,7 +25,7 @@ class PersonalSummary extends Component{
                 <Card className={classes.fillInfoCard}>
                   <CardContent>
                   <Typography variant="h6" gutterBottom>
-                     Shipping address
+                     Professional Summary
                   </Typography>
                   <Grid container spacing={24}>
                       <Grid item xs={12} sm={6}>

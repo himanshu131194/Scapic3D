@@ -14,9 +14,13 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from './ListItems';
+import  MainListItems from './ListItems';
 import Personal from './resume_components/PersonalInfo';
+import Experience from './resume_components/Experience';
 import Skills from './resume_components/Skills';
+import PersonalSummary from './resume_components/PersonalSummary';
+import Projects from './resume_components/ProjectsWorked';
+import EducationalDetails from './resume_components/EducationalDetails';
 
 const drawerWidth = 270;
 
@@ -101,6 +105,15 @@ class Dashboard extends React.Component {
   state = {
     open: true,
   };
+  constructor(){
+     super();
+     this.state.columnValue = ""
+  }
+  componentDidMount(){
+     this.setState({
+       columnValue: 1
+     })
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -162,13 +175,16 @@ class Dashboard extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mainListItems}</List>
+          <List><MainListItems onSelectColumn={(count)=>{ this.setState({ columnValue: count}) }}/></List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-              <Personal/>
-              {(pathname!='/create-resume') && <Skills/>}
-              {(pathname!='/create-resume') && <Skills/>}
+              {(this.state.columnValue==2) && <Personal/>}
+              {(this.state.columnValue==3) && <Skills/>}
+              {(this.state.columnValue==4) && <Experience/>}
+              {(this.state.columnValue==1) && <PersonalSummary/>}
+              {(this.state.columnValue==5) && <Projects/>}
+              {(this.state.columnValue==6) && <EducationalDetails/>}
           <div className={classes.tableContainer}>
           </div>
         </main>

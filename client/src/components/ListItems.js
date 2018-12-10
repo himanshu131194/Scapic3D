@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -11,45 +11,51 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
-export const mainListItems = (
-  <div>
-    <Link to="/">
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Professional Summary" />
-      </ListItem>
-    </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Personal Info" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Skills" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Experience" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Projects Worked On" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Educational Details" />
-    </ListItem>
-  </div>
-);
+const changeResumeColumn = ({onSelectColumn}, count)=>{ onSelectColumn(count);}
+
+const MainListItems = (props)=>{
+    return(
+      <Fragment>
+      <div>
+         <ListItem button onClick={()=>{ changeResumeColumn(props, 1);}}>
+           <ListItemIcon>
+             <DashboardIcon />
+           </ListItemIcon>
+           <ListItemText primary="Professional Summary" />
+         </ListItem>
+        <ListItem button onClick={()=>{ changeResumeColumn(props, 2);}}>
+         <ListItemIcon>
+           <ShoppingCartIcon />
+         </ListItemIcon>
+         <ListItemText primary="Personal Info" />
+        </ListItem>
+        <ListItem button onClick={()=>{ changeResumeColumn(props, 3);}}>
+         <ListItemIcon>
+           <PeopleIcon />
+         </ListItemIcon>
+         <ListItemText primary="Skills" />
+        </ListItem>
+        <ListItem button onClick={()=>{ changeResumeColumn(props, 4);}}>
+         <ListItemIcon>
+           <BarChartIcon />
+         </ListItemIcon>
+         <ListItemText primary="Experience" />
+        </ListItem>
+        <ListItem button onClick={()=>{ changeResumeColumn(props, 5);}}>
+         <ListItemIcon>
+           <LayersIcon />
+         </ListItemIcon>
+         <ListItemText primary="Projects Worked On" />
+        </ListItem>
+        <ListItem button onClick={()=>{ changeResumeColumn(props, 6);}}>
+         <ListItemIcon>
+           <AssignmentIcon />
+         </ListItemIcon>
+         <ListItemText primary="Educational Details" />
+        </ListItem>
+      </div>
+      </Fragment>
+    )
+}
+
+export default MainListItems;

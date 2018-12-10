@@ -25,7 +25,7 @@ class ProjectsWorked extends Component{
                 <Card className={classes.fillInfoCard}>
                   <CardContent>
                   <Typography variant="h6" gutterBottom>
-                     Shipping address
+                     Projects
                   </Typography>
                   <Grid container spacing={24}>
                       <Grid item xs={12} sm={6}>
@@ -72,7 +72,7 @@ class ProjectsWorked extends Component{
     }
 }
 
-PersonalSummary.propTypes = {
+ProjectsWorked.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
