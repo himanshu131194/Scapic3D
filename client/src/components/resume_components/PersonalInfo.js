@@ -9,8 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
 
+import {connect} from 'react-redux'
+import * as actions  from '../../actions'
+
 const styles = theme =>({
-      nextDetail: { display: 'flex',justifyContent: 'flex-end'},
+      nextDetail: { display: 'flex', justifyContent: 'flex-end'},
       fillInfoCard:{
         width: "70%",
         margin: "auto"
@@ -18,10 +21,18 @@ const styles = theme =>({
 })
 
 class PersonalInfo extends Component{
+    submitResumeData = (e)=>{
+       console.log(e);
+       return false;
+    }
     render(){
+      this.props.createResume({}, ()=>{
+          console.log("created resume");
+      });
          const {classes} = this.props;
          return(
             <Fragment>
+                <form onSubmit={this.submitResumeData} method="post">
                 <Card className={classes.fillInfoCard}>
                   <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -64,9 +75,10 @@ class PersonalInfo extends Component{
                   </Grid>
                   </CardContent>
                   <CardActions className={classes.nextDetail}>
-                       <Button color="primary" variant="contained" onClick={this.loginUser}>Next</Button>
+                       <Button color="primary" variant="contained" onClick={this.submitResumeData}>Next</Button>
                   </CardActions>
                 </Card>
+                </form>
             </Fragment>
          )
     }
@@ -76,4 +88,4 @@ PersonalInfo.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PersonalInfo);
+export default connect(null, actions)(withStyles(styles)(PersonalInfo));

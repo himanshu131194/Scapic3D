@@ -32,7 +32,7 @@ const Resume = new mongoose.Schema({
            period: {
               from : Date,
               to: Date
-           }
+           },
            brief_description:{
               type: String
            },
@@ -88,7 +88,7 @@ const Resume = new mongoose.Schema({
         }
       ],
       additional_information:{
-         type String
+         type: String
       },
       updated: Date,
       created:{

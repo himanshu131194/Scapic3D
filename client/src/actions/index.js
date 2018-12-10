@@ -1,4 +1,4 @@
-import {AUTH_USERS, AUTH_ERROR, CREATE_USERS, LOGOUT_USERS} from './types'
+import {AUTH_USERS, AUTH_ERROR, CREATE_USERS, CREATE_RESUME, LOGOUT_USERS} from './types'
 import axios from 'axios'
 
 
@@ -67,6 +67,25 @@ export const logoutUser = ()=>{
          payload: false
        });
    }
+}
+
+
+export const createResume = (userData, callback)=>{
+      return async (dispatch)=>{
+          try{
+            const request = await axios.post('http://localhost:3000/api/create-resume');
+            dispatch({
+                type: CREATE_RESUME,
+                payload: request.data
+            })
+            callback();
+          }catch(error){
+            dispatch({
+                type: CREATE_RESUME,
+                payload: error
+            })
+          }
+      }
 }
 
 
