@@ -69,11 +69,19 @@ export const logoutUser = ()=>{
    }
 }
 
-
 export const createResume = (userData, callback)=>{
       return async (dispatch)=>{
           try{
-            const request = await axios.post('http://localhost:3000/api/create-resume');
+            // const request = await axios.post(
+            //                             'http://localhost:3000/api/create-resume',
+            //
+            console.log(userData);
+            const request = await axios({
+               method: "post",
+               url: 'http://localhost:3000/api/create-resume',
+               data: userData,
+               config: { headers: {'Content-Type': 'application/json' }}
+            });
             dispatch({
                 type: CREATE_RESUME,
                 payload: request.data

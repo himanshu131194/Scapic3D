@@ -21,64 +21,46 @@ const styles = theme =>({
 })
 
 class PersonalInfo extends Component{
-    submitResumeData = (e)=>{
-       console.log(e);
-       return false;
+    constructor() {
+      super();
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleSubmit(event) {
+      event.preventDefault();
+      console.log(event.target);
+      const data = new FormData(event.target);
+      for (var [key, value] of data.entries()) {
+           data.append(key, value);
+      }
+      console.log(data);
+         this.props.createResume(data, ()=>{
+             console.log("created resume");
+         });
+    }
+
+    // submitResumeData = (e)=>{
+    //    const fromData = new FormData(e.target);
+    //    e.preventDefault();
+    //    this.props.createResume(fromData, ()=>{
+    //        console.log("created resume");
+    //    });
+    // }
     render(){
-      this.props.createResume({}, ()=>{
-          console.log("created resume");
-      });
          const {classes} = this.props;
          return(
             <Fragment>
-                <form onSubmit={this.submitResumeData} method="post">
-                <Card className={classes.fillInfoCard}>
-                  <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                     Personal Info
-                  </Typography>
-                  <Grid container spacing={24}>
-                      <Grid item xs={12} sm={6}>
-                        <TextField required id="firstName" name="firstName" label="First name"
-                        fullWidth autoComplete="fname"/>
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField required id="lastName" name="lastName" label="Last name"
-                          fullWidth autoComplete="lname"
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField required id="email" name="email" label="Email"
-                          fullWidth autoComplete="email"
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField required id="phone" name="phone" label="phone"
-                          fullWidth autoComplete="phone"
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField required id="address" name="address" label="address"
-                          fullWidth autoComplete="address"
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField required id="state" name="state" label="state"
-                        fullWidth autoComplete="state"/>
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField required id="city" name="city" label="city"
-                          fullWidth autoComplete="city"
-                        />
-                      </Grid>
-                  </Grid>
-                  </CardContent>
-                  <CardActions className={classes.nextDetail}>
-                       <Button color="primary" variant="contained" onClick={this.submitResumeData}>Next</Button>
-                  </CardActions>
-                </Card>
-                </form>
+                  <form onSubmit={this.handleSubmit}>
+                   <label htmlFor="username">Enter username</label>
+                   <input id="username" name="username" type="text" />
+
+                   <label htmlFor="email">Enter your email</label>
+                   <input id="email" name="email" type="email" />
+
+                   <label htmlFor="birthdate">Enter your birth date</label>
+                   <input id="birthdate" name="birthdate" type="text" />
+                   <button>Send data!</button>
+                 </form>
             </Fragment>
          )
     }

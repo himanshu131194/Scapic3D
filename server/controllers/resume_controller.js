@@ -8,6 +8,8 @@ const create = (req, res)=>{
 }
 
 const createResume = (req, res, next)=>{
+      // const resume = new Resume()
+      console.log(req.body);
        res.send({
           data: "Himanshu"
        })
