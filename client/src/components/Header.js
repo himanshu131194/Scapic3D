@@ -70,7 +70,7 @@ class Header extends Component{
                  <Grid container direction="row" justify="center" alignItems="center" spacing={24}>
                    <Grid item xs={6}>
                       <Typography color="inherit">
-                         Resume Builder
+                         3D Models
                       </Typography>
                    </Grid>
                    {privateElements? this.withLogin(): this.withoutLogin()}

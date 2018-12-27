@@ -87,6 +87,21 @@ class Login extends Component{
                   <CardActions  className={classes.submitlogin}>
                      <Button color="primary" variant="contained" onClick={this.loginUser} className={classes.submit}>Submit</Button>
                   </CardActions>
+                  <CardContent>
+                   <Typography type="headline" component="h2" className={classes.title}>
+                      Or Login With -
+                   </Typography>
+                   <CardActions>
+                       <Grid container direction="row" justify="center" alignItems="center" spacing={24}>
+                           <Grid item xs={6}>
+                               <Button color="primary" variant="contained" className={classes.googlelogin} onClick={this.facebookLogin}>Google</Button>
+                           </Grid>
+                           <Grid item xs={6} className={classes.textRight}>
+                               <Button color="primary" variant="contained" className={classes.facebooklogin} onClick={this.facebookLogin}>Facebook</Button>
+                           </Grid>
+                       </Grid>
+                   </CardActions>
+                   </CardContent>
                 </Card>
              </Fragment>
           )
