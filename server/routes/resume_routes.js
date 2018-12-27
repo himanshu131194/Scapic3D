@@ -10,4 +10,7 @@ router.route('/auth')
 router.route('/create-resume')
       .post(resumeController.createResume)
 
+router.route('/list-products')
+      .get(resumeController.listProducts)
+
 export default router;

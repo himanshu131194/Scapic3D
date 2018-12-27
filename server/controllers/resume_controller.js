@@ -1,5 +1,6 @@
 import auth from './auth_controller';
 import Resume from '../models/resume';
+import requestPromise from 'request-promise';
 
 const create = (req, res)=>{
       res.send({
@@ -15,4 +16,9 @@ const createResume = (req, res, next)=>{
        })
 }
 
-export default {create, createResume}
+const listProducts = async (req, res, next)=>{
+      const data = await requestPromise('https://s3.ap-south-1.amazonaws.com/scapic-others/json/models.json');
+      res.json({data});
+}
+
+export default {create, createResume, listProducts}

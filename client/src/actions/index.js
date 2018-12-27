@@ -1,4 +1,4 @@
-import {AUTH_USERS, AUTH_ERROR, CREATE_USERS, CREATE_RESUME, LOGOUT_USERS} from './types'
+import {AUTH_USERS, AUTH_ERROR, CREATE_USERS, CREATE_RESUME, LOGOUT_USERS, LIST_PRODUCTS} from './types'
 import axios from 'axios'
 
 
@@ -49,6 +49,28 @@ export const verifyOTP = (email, otp, callback)=>{
          dispatch({
              type: AUTH_USERS,
              payload: request.data.data
+         })
+         callback();
+       }catch(error){
+         dispatch({
+             type: AUTH_ERROR,
+             payload: error
+         })
+       }
+    }
+}
+
+export const list3DObjects = (callback)=>{
+    return async (dispatch)=>{
+       try {
+         const request = await axios({
+            method: "get",
+            url: 'http://localhost:3000/api/list-products',
+            config: { headers: {'Content-Type': 'application/json' }}
+         });
+         dispatch({
+             type: LIST_PRODUCTS,
+             payload: request.data
          })
          callback();
        }catch(error){

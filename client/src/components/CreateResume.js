@@ -12,9 +12,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
 import Header from './Header';
+import * as actions  from '../actions'
 
 const styles = theme => ({
   appBar: {
@@ -72,7 +74,9 @@ class ListItems extends Component{
          super();
       }
       componentDidMount(){
-
+        this.props.list3DObjects(()=>{
+            console.log(this.props);
+        });
       }
       render(){
           const {classes} = this.props;
@@ -130,4 +134,4 @@ ListItems.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListItems);
+export default connect((state)=>state, actions)(withStyles(styles)(ListItems));

@@ -10,7 +10,7 @@ import {isAuthenticated} from './src/auth/auth';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 hydrate(
-   <Provider store={createStoreWithMiddleware(reducers, {auth: {authenticated: {auth: isAuthenticated()}}})}>
+   <Provider store={createStoreWithMiddleware(reducers)}>
     <App/>
    </Provider>
   , document.getElementById('root')
