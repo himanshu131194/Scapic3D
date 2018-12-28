@@ -17,7 +17,10 @@ const createResume = (req, res, next)=>{
 }
 
 const listProducts = async (req, res, next)=>{
-      const data = await requestPromise('https://s3.ap-south-1.amazonaws.com/scapic-others/json/models.json');
+      const data = await requestPromise({
+           uri :'https://s3.ap-south-1.amazonaws.com/scapic-others/json/models.json',
+           json:true
+      });
       res.json({data});
 }
 

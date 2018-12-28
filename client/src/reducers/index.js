@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import authReducer  from './auth_reducers'
-import resumeReducer from './resume_reducers'
+import prodcutReducer from './resume_reducers'
 
 const rootReducer = combineReducers({
    auth: authReducer,
-   resume: resumeReducer
+   products: prodcutReducer
 });
 
 export default rootReducer;
