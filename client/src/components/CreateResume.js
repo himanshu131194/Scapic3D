@@ -15,6 +15,10 @@ import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import Header from './Header';
 import * as actions  from '../actions'
 
@@ -67,14 +71,28 @@ const styles = theme => ({
     padding: theme.spacing.unit * 6,
   },
   categorylistcard:{
+     postion: 'relative',
      marginBottom: theme.spacing.unit * 2
   },
   viewproductin3d:{
      margin: 'auto'
+  },
+  absolute: {
+    position: 'absolute'
+  },
+  nextprodcut:{
+     color: "#fff",
+     marginLeft: theme.spacing.unit * 3,
+  },
+  nextclick:{
+    position: 'absolute',
+    right: theme.spacing.unit * 6
+  },
+  prevclick:{
+    left: theme.spacing.unit * 6,
+    position: 'absolute'
   }
 });
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 class ListItems extends Component{
       constructor(){
@@ -88,14 +106,14 @@ class ListItems extends Component{
       productList = (productsCategory)=>{
          const {classes} = this.props;
          return(
-           <Card className={classes.categorylistcard}>
+           <Card key={productsCategory.name} className={classes.categorylistcard}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {productsCategory.name}
               </Typography>
                <Grid container spacing={40}>
                {productsCategory.models.map((products)=>(
-                    <Grid item key={productsCategory.name} sm={6} md={4} lg={3}>
+                    <Grid item key={products.name} sm={6} md={4} lg={3}>
                      <Card className={classes.card}>
                        <CardMedia
                          className={classes.cardMedia}
@@ -114,6 +132,16 @@ class ListItems extends Component{
                     </Grid>
                 ))
               }
+              <Tooltip title="Next" aria-label="Next" className={classes.absolute, classes.nextclick}>
+                <Fab variant="outlined" color="primary">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z" fill="#fff"/><path fill="none" d="M0 0h24v24H0z"/></svg>
+                </Fab>
+              </Tooltip>
+              <Tooltip title="Prev" aria-label="Prev" className={classes.absolute, classes.prevclick}>
+                <Fab variant="outlined" color="primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z" fill="#fff"/><path fill="none" d="M0 0h24v24H0z"/></svg>
+                </Fab>
+              </Tooltip>
              </Grid>
            </CardContent>
           </Card>

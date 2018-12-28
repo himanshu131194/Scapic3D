@@ -6,11 +6,12 @@ export default ()=>{
           <title>MERN Skeleton</title>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/himanshu-testing-bucket/three.min.js" ></script>
+      		<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/himanshu-testing-bucket/MTLLoader.js" ></script>
+      		<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/himanshu-testing-bucket/MTLLoader.js" ></script>
           <meta name="google-signin-client_id" content="820301897401-3v97489dlrhplu79fdvv8jt1b3dt6mi7.apps.googleusercontent.com">
           <style>
-              a{
-                text-decoration: none
-              }
+              a{text-decoration: none;}
           </style>
         </head>
         <body style="margin:0">

@@ -1,6 +1,6 @@
 const config = {
   env: process.env.NODE_ENV || 'development',
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3001,
   JWT_SECRET: process.env.JWT_SECRET || "YOUR_secret_key",
   DB_URL: process.env.MONGODB_URI || 'mongodb://scarpic:scarpic123@ds129904.mlab.com:29904/scapic',
   LOGIN_TYPE: {
