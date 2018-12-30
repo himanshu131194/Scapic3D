@@ -50,3 +50,6 @@ const hasAuthorization = (req, res, next)=>{
 }
 
 export default {signin, hasAuthorization}
+
+// SELECT * FROM categories as c INNER JOIN products as p ON c.id=a.category_id
+//INSERT INTO categories (name) VALUES ('Animals'),('Foods'),('Furniture'),('Nature'),('Technology'),('Transport');
