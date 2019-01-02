@@ -60,19 +60,15 @@ export const verifyOTP = (email, otp, callback)=>{
     }
 }
 
-export const list3DObjects = (callback)=>{
+export const list3DObjects = (offset, limit, callback)=>{
     return async (dispatch)=>{
        try {
-         const request = await axios({
-            method: "get",
-            url: 'http://localhost:3000/api/list-products'
-            // config: { headers: {'Content-Type': 'application/json' }}
-         });
+         const request = await axios(`http://localhost:3000/api/list-products?offset=${offset}&limit=${limit}`);
          console.log(request.data);
          dispatch({
              type: LIST_PRODUCTS,
              payload: request.data
-         })
+         });
          callback();
        }catch(error){
          dispatch({

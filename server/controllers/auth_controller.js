@@ -46,7 +46,7 @@ const hasAuthorization = (req, res, next)=>{
             }
             req.profile = decoded;
             next();
-      })
+      });
 }
 
 export default {signin, hasAuthorization}

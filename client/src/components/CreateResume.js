@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AppBar from '@material-ui/core/AppBar';
@@ -52,7 +52,7 @@ const styles = theme => ({
     },
   },
   cardGrid: {
-    padding: `${theme.spacing.unit * 8}px 0`,
+    paddingTop: `${theme.spacing.unit * 8}px`,
   },
   card: {
     height: '100%',
@@ -86,21 +86,30 @@ const styles = theme => ({
   },
   nextclick:{
     position: 'absolute',
-    right: theme.spacing.unit * 6
+    right: theme.spacing.unit * 13
   },
   prevclick:{
-    left: theme.spacing.unit * 6,
+    left: theme.spacing.unit * 13,
     position: 'absolute'
+  },
+  loadMore:{
+      textAlign: 'center',
+      marginBottom: theme.spacing.unit * 5
   }
 });
 
-class ListItems extends Component{
+class ListItems extends PureComponent{
       constructor(){
          super();
+         this.state = {
+             loading: false,
+             offset: 0,
+             limit: 3
+         }
       }
       componentDidMount(){
-        this.props.list3DObjects(()=>{
-            console.log(this.props);
+        this.props.list3DObjects(this.state.offset, this.state.limit, ()=>{
+            console.log("loaded");
         });
       }
       productList = (productsCategory)=>{
@@ -112,7 +121,7 @@ class ListItems extends Component{
                 {productsCategory.name}
               </Typography>
                <Grid container spacing={40}>
-               {productsCategory.models.map((products)=>(
+               {productsCategory.products.map((products)=>(
                     <Grid item key={products.name} sm={6} md={4} lg={3}>
                      <Card className={classes.card}>
                        <CardMedia
@@ -133,12 +142,12 @@ class ListItems extends Component{
                 ))
               }
               <Tooltip title="Next" aria-label="Next" className={classes.absolute, classes.nextclick}>
-                <Fab variant="outlined" color="primary">
+                <Fab variant="round" color="primary">
                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z" fill="#fff"/><path fill="none" d="M0 0h24v24H0z"/></svg>
                 </Fab>
               </Tooltip>
               <Tooltip title="Prev" aria-label="Prev" className={classes.absolute, classes.prevclick}>
-                <Fab variant="outlined" color="primary">
+                <Fab variant="round" color="primary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z" fill="#fff"/><path fill="none" d="M0 0h24v24H0z"/></svg>
                 </Fab>
               </Tooltip>
@@ -147,23 +156,32 @@ class ListItems extends Component{
           </Card>
          )
       }
+      loadMoreCategories = async ()=>{
+            let offset = parseInt(this.state.offset)+3;
+            await this.setState({offset});
+            this.props.list3DObjects(this.state.offset, this.state.limit, ()=>{
+                console.log("loaded");
+            });
+      }
       render(){
           const {classes} = this.props;
-          const {categories} = this.props.products.data;
+          console.log(this.props);
+          const categories = this.props.products.data;
           return(
             <Fragment>
               <CssBaseline />
               <Header/>
               <main>
                 <div className={classNames(classes.layout, classes.cardGrid)}>
-                    {categories &&
+                    {categories.length>0 &&
                       categories.map(products =>{
+                         console.log(products);
                          return this.productList(products);
                       })
                     }
                 </div>
-                <div className={classNames(classes.layout, classes.cardGrid)}>
-                  <Button variant="outlined" color="primary">
+                <div className={classNames(classes.layout, classes.loadMore)}>
+                  <Button variant="outlined" color="primary" onClick={this.loadMoreCategories}>
                       load more categories
                   </Button>
                 </div>
