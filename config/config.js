@@ -1,4 +1,12 @@
+import {Pool} from 'pg';
 const config = {
+    pool : new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'scapic',
+    password: '123456',
+    port: 5432,
+  }),
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 3000,
   JWT_SECRET: process.env.JWT_SECRET || "YOUR_secret_key",

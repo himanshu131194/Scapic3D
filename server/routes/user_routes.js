@@ -5,7 +5,10 @@ const router = express.Router();
 router.route('/users')
       .post(userController.create);
 
-router.route('/verify-otp')
-      .post(userController.verifyOTP);
+router.route('/signin')
+      .post(userController.signin);
+
+router.route('/check-authenticate')
+      .post(userController.hasAuthorization);
 
 export default router;

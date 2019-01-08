@@ -1,6 +1,5 @@
 import express from 'express'
 import userRoutes from './routes/user_routes'
-import authRoutes from './routes/auth_routes'
 import resumeRoutes from './routes/resume_routes'
 const app = express();
 
@@ -53,7 +52,6 @@ app.use(cors())
 import passport_services from './services/passport';
 
 app.use('/api', userRoutes);
-app.use('/api', authRoutes);
 app.use('/api', resumeRoutes);
 
 

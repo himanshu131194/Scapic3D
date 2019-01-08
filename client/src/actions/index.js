@@ -2,6 +2,20 @@ import {AUTH_USERS, AUTH_ERROR, CREATE_USERS, CREATE_RESUME, LOGOUT_USERS, LIST_
 import axios from 'axios'
 
 
+export const isAuthenticated = ()=>{
+       return "isAuthenticated";
+       return (dispatch){
+            try {
+              const request = await axios.post('http://localhost:3000/api/signin', {
+                    email: email,
+                    password: password
+              });
+            }catch(e) {
+
+            }
+       }
+}
+
 export const signin = ({email, password}, callback)=>{
     return async (dispatch)=>{
        try{
@@ -30,6 +44,7 @@ export const signup = ({email, password}, callback)=>{
                 email: email,
                 password: password
           });
+          console.log(request);
           dispatch({
               type: CREATE_USERS,
               payload: request.data.data

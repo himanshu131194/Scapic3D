@@ -1,26 +1,18 @@
 import auth from './auth_controller';
 import Resume from '../models/resume';
 import requestPromise from 'request-promise';
-import {Pool} from 'pg';
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'scapic',
-  password: '123456',
-  port: 5432,
-});
+import config from '../../config/config';
 
+const pool = config.pool;
 const create = (req, res)=>{
       res.send({
           id: req.profile
       })
 }
 const createResume = (req, res, next)=>{
-      // const resume = new Resume()
-      console.log(req.body);
        res.send({
           data: "Himanshu"
-       })
+       });
 }
 const listProducts = async (req, res, next)=>{
       const offset = req.query['offset'];
@@ -36,11 +28,5 @@ const listProducts = async (req, res, next)=>{
             error: e.message
          });
       }
-      // const data = await requestPromise({
-      //      uri :'https://s3.ap-south-1.amazonaws.com/scapic-others/json/models.json',
-      //      json:true
-      // });
-      // res.json({data});
 }
-
 export default {create, createResume, listProducts}

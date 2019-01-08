@@ -6,10 +6,15 @@ import Signup from './src/components/Signup'
 import Home from './src/components/Home'
 import Verify from './src/components/Verify'
 import CreateResume from './src/components/CreateResume'
+import {connect} from 'react-redux'
+import * as actions from './src/actions';
 
 class MainRouter extends Component{
+  constructor(){
+    super();
+  }
   componentDidMount(){
-
+      console.log(this.props);
   }
   render(){
      return(
@@ -27,4 +32,4 @@ class MainRouter extends Component{
   }
 }
 
-export default MainRouter;
+export default connect(null, actions)(MainRouter);
